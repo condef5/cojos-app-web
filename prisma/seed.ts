@@ -1,18 +1,23 @@
+import { players } from "./seed-players";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
+async function seedPlayers() {
+  for (const player of players) {
+    await prisma.player.create({
+      data: {
+        name: player.name,
+        level: player.level,
+      },
+    });
+  }
+}
+
 async function seed() {
-  const email = "spectre@gmail.com";
-
-  // cleanup the existing database
-  await prisma.user.delete({ where: { email } }).catch(() => {
-    // no worries if it doesn't exist yet
-  });
-
-  const hashedPassword = await bcrypt.hash("lucas123", 10);
-
+  const email = "frankcondezo@gmail.com";
+  const hashedPassword = await bcrypt.hash("letmein", 10);
   const user = await prisma.user.create({
     data: {
       email,
@@ -24,21 +29,9 @@ async function seed() {
     },
   });
 
-  await prisma.note.create({
-    data: {
-      title: "My first note",
-      body: "Hello, world!",
-      userId: user.id,
-    },
-  });
+  console.log(`User created: ${user.email} (ID: ${user.id})`);
 
-  await prisma.note.create({
-    data: {
-      title: "My second note",
-      body: "Hello, world!",
-      userId: user.id,
-    },
-  });
+  seedPlayers();
 
   console.log(`Database has been seeded. 🌱`);
 }
