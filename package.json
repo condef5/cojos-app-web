@@ -34,6 +34,8 @@
     "@remix-run/react": "^1.11.0",
     "@remix-run/serve": "^1.11.0",
     "@remix-run/server-runtime": "^1.11.0",
+    "@tanstack/match-sorter-utils": "^8.7.6",
+    "@tanstack/react-table": "^8.7.6",
     "bcryptjs": "^2.4.3",
     "isbot": "^3.6.5",
     "react": "^18.2.0",
