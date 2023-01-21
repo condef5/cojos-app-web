@@ -8,6 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { Toaster } from "react-hot-toast";
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
@@ -37,6 +38,7 @@ export default function App() {
       </head>
       <body className="h-full">
         <Outlet />
+        <Toaster position="bottom-center" />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

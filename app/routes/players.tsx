@@ -1,6 +1,6 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
+import { Form, Link, Outlet } from "@remix-run/react";
 
 import { requireUserId } from "~/session.server";
 import { useUser } from "~/utils";
@@ -13,7 +13,6 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 export default function NotesPage() {
-  const data = useLoaderData<typeof loader>();
   const user = useUser();
 
   return (
@@ -34,9 +33,7 @@ export default function NotesPage() {
       </header>
 
       <main className="flex h-full bg-white">
-        <div className="h-full w-80 p-2 border-r bg-gray-50">
-          Some players
-        </div>
+        <div className="h-full w-80 border-r bg-gray-50 p-2">Some players</div>
 
         <div className="flex-1 p-6">
           <Outlet />
