@@ -185,7 +185,7 @@ export function PlayerTable({
           </tbody>
         </table>
         <div className="h-2" />
-        <div className="mt-4 flex items-center gap-2 text-slate-600">
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-slate-600">
           <button
             className="rounded border p-1"
             onClick={() => table.setPageIndex(0)}
@@ -214,6 +214,19 @@ export function PlayerTable({
           >
             {">>"}
           </button>
+          <select
+            value={table.getState().pagination.pageSize}
+            onChange={(e) => {
+              table.setPageSize(Number(e.target.value));
+            }}
+          >
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
+          <span className="md-hidden w-full"></span>
           <span className="flex items-center gap-1">
             <div>Page</div>
             <strong>
@@ -233,18 +246,6 @@ export function PlayerTable({
               className="w-16 rounded border p-1"
             />
           </span>
-          <select
-            value={table.getState().pagination.pageSize}
-            onChange={(e) => {
-              table.setPageSize(Number(e.target.value));
-            }}
-          >
-            {[10, 20, 30, 40, 50].map((pageSize) => (
-              <option key={pageSize} value={pageSize}>
-                Show {pageSize}
-              </option>
-            ))}
-          </select>
         </div>
       </div>
     </div>
