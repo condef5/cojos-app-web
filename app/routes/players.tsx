@@ -1,5 +1,19 @@
-import { Form, Link, Outlet } from "@remix-run/react";
+import type { NavLinkProps } from "@remix-run/react";
+import { Form, Link, NavLink as RLink, Outlet } from "@remix-run/react";
 import { useUser } from "~/utils";
+
+function NavLink(props: NavLinkProps) {
+  return (
+    <RLink
+      className={({ isActive }) =>
+        isActive
+          ? "text-slate-500  hover:underline"
+          : "text-blue-500 hover:underline"
+      }
+      {...props}
+    />
+  );
+}
 
 export default function NotesPage() {
   const user = useUser();
@@ -23,18 +37,9 @@ export default function NotesPage() {
 
       <main className="block h-full flex-wrap bg-white md:flex md:flex-nowrap">
         <div className="flex h-auto w-full flex-col gap-2 border-r bg-gray-50 p-2 md:h-full md:w-80">
-          <Link
-            className=" text-blue-500 hover:underline dark:text-blue-500"
-            to="/players/new"
-          >
-            ➕ New Player
-          </Link>
-          <Link
-            className=" text-blue-500 hover:underline dark:text-blue-500"
-            to="/players"
-          >
-            📖 Players
-          </Link>
+          <NavLink to="/players/new">➕ New Player</NavLink>
+          <NavLink to="/players">📖 Players</NavLink>
+          <NavLink to="/players/random-team">🔀 Crear Team</NavLink>
         </div>
 
         <div className="flex-1 p-2 md:p-6">
