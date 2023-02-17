@@ -7,11 +7,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
-import { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
-import { getUser } from "./session.server";
+import { getSession, getUser, sessionStorage } from "./session.server";
+import { useEffect } from "react";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
@@ -24,12 +26,32 @@ export const meta: MetaFunction = () => ({
 });
 
 export async function loader({ request }: LoaderArgs) {
-  return json({
-    user: await getUser(request),
-  });
+  const session = await getSession(request);
+  const toastMessage = session.get("toastMessage") || null;
+
+  return json(
+    {
+      user: await getUser(request),
+      toastMessage,
+    },
+    {
+      headers: {
+        "Set-Cookie": await sessionStorage.commitSession(session),
+      },
+    }
+  );
 }
 
 export default function App() {
+  const { toastMessage } = useLoaderData<typeof loader>();
+
+  useEffect(() => {
+    if (!toastMessage) {
+      return;
+    }
+    toast.success(toastMessage);
+  }, [toastMessage]);
+
   return (
     <html lang="en" className="h-full">
       <head>
