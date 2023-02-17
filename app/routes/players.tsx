@@ -22,8 +22,9 @@ export default function NotesPage() {
       </header>
 
       <main className="block h-full flex-wrap bg-white md:flex md:flex-nowrap">
-        <div className="h-auto w-full border-r bg-gray-50 p-2 md:h-full md:w-80">
-          <Link to="/players">Players</Link>
+        <div className="flex h-auto w-full flex-col border-r bg-gray-50 p-2 md:h-full md:w-80 gap-2">
+          <Link to="/players">Player</Link>
+          <Link to="/players">Add Player</Link>
         </div>
 
         <div className="flex-1 p-2 md:p-6">

@@ -134,7 +134,7 @@ export function PlayerTable({
         );
       },
     },
-    });
+  });
 
   return (
     <div className="p-2">
@@ -145,7 +145,10 @@ export function PlayerTable({
         onChange={(event) => setGlobalFilter(event.target.value)}
         placeholder="Buscar..."
       />
-      <div className=" max-w-3xl overflow-auto p-2">
+      <div className="max-w-3xl overflow-auto p-2">
+        <div className="mb-1 text-right text-sm font-bold text-slate-500">
+          {table.getRowModel().rows.length} Rows
+        </div>
         <table className="m-auto w-full  table-auto border-collapse text-sm">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -153,7 +156,7 @@ export function PlayerTable({
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="border-b py-3 pt-0 pb-3 text-left font-medium text-slate-400 dark:border-slate-600 dark:text-slate-200"
+                    className="w-1/2 border-b py-3 pt-0 pb-3 text-left font-medium text-slate-500"
                   >
                     {header.isPlaceholder
                       ? null
@@ -172,7 +175,7 @@ export function PlayerTable({
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
-                    className="border-b border-slate-100 text-slate-500 dark:border-slate-700 dark:text-slate-400"
+                    className="border-b border-slate-100 text-slate-500"
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
@@ -182,7 +185,7 @@ export function PlayerTable({
           </tbody>
         </table>
         <div className="h-2" />
-        <div className="mt-4 flex items-center gap-2">
+        <div className="mt-4 flex items-center gap-2 text-slate-600">
           <button
             className="rounded border p-1"
             onClick={() => table.setPageIndex(0)}
@@ -243,7 +246,6 @@ export function PlayerTable({
             ))}
           </select>
         </div>
-        <div>{table.getRowModel().rows.length} Rows</div>
       </div>
     </div>
   );
