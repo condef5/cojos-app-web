@@ -13,7 +13,7 @@ Gorpa		4
 Kenyi		4
 Ario		7
 Juan Masgo		9
-Sandrito		3
+Sandrito		2
 Trejo		6
 Cato		8
 Angel		5
@@ -41,7 +41,21 @@ Jhil		7
 Francis z		5
 Jhonatan		3
 Gregory		4
-Paulo T.		3`;
+Paulo T.		3
+Amigo de Ronaldo A.		5
+Loloy		5
+Pavel		2
+Jheampol		7
+Mori		3
+Salas		5
+Fisher		5
+Amigo de jhoan		5
+Jara		6
+Josue		4
+Cantaro		5
+Luis simon		5
+Anghelo		6
+Angel M		5`;
 
 export const players = textPlayers.split("\n").map((player) => {
   const [name, number] = player.split("\t\t");
