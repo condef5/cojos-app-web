@@ -19,18 +19,18 @@ export default function Index() {
               <div className="absolute inset-0 bg-[color:rgba(254,204,27,0.75)] mix-blend-multiply" />
             </div>
             <div className="relative flex flex-col items-center px-4 py-8 sm:px-6  lg:px-8 lg:pb-20 lg:pt-32">
-              <h1 className="text-center text-6xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl">
+              <h1 className="text-center text-5xl font-extrabold tracking-tight sm:text-4xl lg:text-6xl">
                 <span className="block uppercase text-yellow-500 drop-shadow-md">
-                  Cojos App
+                  Cojos de Tingo María
                 </span>
               </h1>
               <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                 {user ? (
                   <Link
-                    to="/notes"
+                    to="/players"
                     className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
                   >
-                    View Notes for {user.email}
+                    Go to Players
                   </Link>
                 ) : (
                   <div className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
