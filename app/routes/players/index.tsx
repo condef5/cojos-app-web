@@ -42,7 +42,6 @@ export default function PlayerIndexPage() {
   function updatePlayer(index: number, column: string, level: string) {
     const player = players[index];
 
-    // ignore typescript error
     // @ts-ignore
     if (player[column] === level) return;
 
@@ -68,6 +67,7 @@ export default function PlayerIndexPage() {
 
   return (
     <div>
+      {/* @ts-ignore */}
       <PlayerTable players={players} updatePlayer={updatePlayer} />
     </div>
   );

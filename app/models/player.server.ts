@@ -19,3 +19,9 @@ export function updatePlayer(playerId: Player["id"], level: number) {
     },
   });
 }
+
+export function createPlayer(data: Pick<Player, "level" | "name">) {
+  return prisma.player.create({
+    data,
+  });
+}
