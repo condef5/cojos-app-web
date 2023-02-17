@@ -25,11 +25,17 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+type ToastMessage = { type: "success" | "error"; message: string } | string;
+type LoaderData = {
+  user: Awaited<ReturnType<typeof getUser>>;
+  toastMessage: ToastMessage;
+};
+
 export async function loader({ request }: LoaderArgs) {
   const session = await getSession(request);
-  const toastMessage = session.get("toastMessage") || null;
+  const toastMessage: ToastMessage = session.get("toastMessage") || null;
 
-  return json(
+  return json<LoaderData>(
     {
       user: await getUser(request),
       toastMessage,
@@ -43,13 +49,20 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 export default function App() {
-  const { toastMessage } = useLoaderData<typeof loader>();
+  const { toastMessage } = useLoaderData() as LoaderData;
 
   useEffect(() => {
     if (!toastMessage) {
       return;
     }
-    toast.success(toastMessage);
+
+    if (typeof toastMessage === "object") {
+      toast[toastMessage.type](toastMessage.message);
+    }
+
+    if (typeof toastMessage === "string") {
+      toast.success(toastMessage);
+    }
   }, [toastMessage]);
 
   return (
@@ -60,7 +73,12 @@ export default function App() {
       </head>
       <body className="h-full">
         <Outlet />
-        <Toaster position="bottom-center" />
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            duration: 4000,
+          }}
+        />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
