@@ -1,5 +1,8 @@
 import type { NavLinkProps } from "@remix-run/react";
 import { Form, Link, NavLink as RLink, Outlet } from "@remix-run/react";
+import type { LoaderArgs } from "@remix-run/server-runtime";
+import { json } from "@remix-run/server-runtime";
+import { requireUserId } from "~/session.server";
 import { useUser } from "~/utils";
 
 function NavLink(props: NavLinkProps) {
@@ -13,6 +16,12 @@ function NavLink(props: NavLinkProps) {
       {...props}
     />
   );
+}
+
+export async function loader({ request }: LoaderArgs) {
+  await requireUserId(request);
+
+  return json({});
 }
 
 export default function NotesPage() {
