@@ -1,24 +1,29 @@
 # Cojos app
 
+<img src='https://i.imgur.com/0QZVfYx.png' />
 
+## Setup development
 
+1. You need these programs:
 
-## Development
+- [NodeJs](https://nodejs.org/en/)
+- [yarn](https://yarnpkg.com/)
 
-For run migrations
+2. Run migrations and seeds
+
 ```sh
-npm run setup
+yarn setup
 ```
 
-- Start dev server:
+3. Start dev server:
 
 ```sh
 yarn dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+4. Go to http://localhost:3000/
 
-The database seed script creates a new user with some data you can use to get started:
+5. Use these credentials:
 
-- Email: `spectre@gmail.com`
-- Password: `lucas123`
+- Email: `frankcondezo@gmail.com`
+- Password: `letmein`
