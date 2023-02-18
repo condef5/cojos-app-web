@@ -18,8 +18,8 @@ model User {
 
 model Player {
   id        String   @id @default(cuid())
-  name      String?
-  level     Int?     @default(1)
+  name      String
+  level     Int      @default(1)
   // timestapms
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
