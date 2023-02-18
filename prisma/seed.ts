@@ -4,6 +4,15 @@ import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
+async function destroyAllData() {
+  console.log(`Destroying all data...`);
+
+  await prisma.user.deleteMany({});
+  await prisma.player.deleteMany({});
+
+  console.log(`All data destroyed. 🗑️`);
+}
+
 async function seedPlayers() {
   for (const player of players) {
     await prisma.player.create({
@@ -16,10 +25,15 @@ async function seedPlayers() {
 }
 
 async function seed() {
+  await destroyAllData();
+
   const email = "frankcondezo@gmail.com";
   const hashedPassword = await bcrypt.hash("letmein", 10);
-  const user = await prisma.user.create({
-    data: {
+  const user = await prisma.user.upsert({
+    where: {
+      email,
+    },
+    create: {
       email,
       password: {
         create: {
@@ -27,6 +41,7 @@ async function seed() {
         },
       },
     },
+    update: {},
   });
 
   console.log(`User created: ${user.email} (ID: ${user.id})`);
