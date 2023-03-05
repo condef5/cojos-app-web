@@ -3,8 +3,10 @@ import { findPlayers, generateTeams } from "~/models/player.server";
 import { playerAll } from "~/models/player.server";
 import type { ActionArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
-import { Form, useActionData } from "@remix-run/react";
+import { Form, useActionData, useTransition } from "@remix-run/react";
 import { getSession, sessionStorage } from "~/session.server";
+import React from "react";
+import _ from "lodash";
 
 function teamWeight(team: Player[]) {
   return team.reduce((sum, player: Player) => sum + player.level, 0);
@@ -12,7 +14,7 @@ function teamWeight(team: Player[]) {
 
 type LoaderData = {
   errors: Record<string, string>;
-  missing?: string[];
+  missing?: { player: string; possibleFind?: string }[];
   possibleTeams?: Player[][];
   meta?: {
     lowestTeamWeight: number;
@@ -99,29 +101,19 @@ export async function loader() {
 
 export default function PlayerIndexPage() {
   const actionData = useActionData() as LoaderData;
+  const [initList, setInitList] = React.useState("");
+  const transition = useTransition();
 
-  const init = `
-  1. Frank
-  2. Cahuana
-  3. Luis Simón
-  4. Jara
-  5.Piero goo
-  6. Anibal Diaz
-  7. Ronaldo el bicho
-  8.Ricardo 🍫
-  9. Ronaldo A.
-  10.Sandro
-  11. Alpaquitay
-  12.{CANTARO}
-  13. Bruce goo
-  14. Geronimo
-  15. Lucho go
-  16. Jhoan
-  17.LuisR
-  18. gorpa
-  19. Kenyi
-  20. Luigi alva
-  21. Árnol`;
+  React.useEffect(() => {
+    const value = localStorage.getItem("list") || "";
+    setInitList(value);
+  }, []);
+
+  React.useEffect(() => {
+    if (!initList) return;
+
+    localStorage.setItem("list", initList);
+  }, [initList]);
 
   return (
     <div
@@ -152,9 +144,11 @@ export default function PlayerIndexPage() {
               required
               rows={10}
               className="w-full flex-1 rounded-md border-2 border-blue-500 py-2 px-3 text-sm"
-            >
-              {init}
-            </textarea>
+              onChange={(e) => {
+                setInitList(e.target.value);
+              }}
+              value={initList}
+            />
           </label>
         </div>
 
@@ -163,7 +157,7 @@ export default function PlayerIndexPage() {
             type="submit"
             className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
           >
-            Generar
+            {transition.state === "submitting" ? "Generando..." : "Generar"}
           </button>
         </div>
       </Form>
@@ -172,8 +166,22 @@ export default function PlayerIndexPage() {
           <h2 className="mb-2  text-red-400">Jugadores no identificados</h2>
 
           <ol className="list-decimal">
-            {actionData?.missing.map((player) => (
-              <li key={player}>{player}</li>
+            {actionData?.missing.map(({ player, possibleFind }) => (
+              <li key={player}>
+                {player}{" "}
+                {possibleFind && (
+                  <span
+                    onClick={(event) => {
+                      const regPlayer = new RegExp(player, "i");
+                      setInitList(initList.replace(regPlayer, possibleFind));
+                      event?.target?.parentElement?.remove();
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    ({possibleFind})
+                  </span>
+                )}
+              </li>
             ))}
           </ol>
         </div>
@@ -188,9 +196,14 @@ export default function PlayerIndexPage() {
                 <span className="font-normal">{teamWeight(team)}</span>
               </h3>
               <ol className="flex list-decimal flex-col gap-1">
-                {team.map((player: Player) => (
-                  <li key={player.id}>{player.name}</li>
-                ))}
+                {_.sortBy(team, ["level"])
+                  .reverse()
+                  .map((player: Player) => (
+                    <li className="w-1/2" key={player.id}>
+                      {player.name} -{" "}
+                      <span className="text-sm">{player.level}</span>
+                    </li>
+                  ))}
               </ol>
             </div>
           ))}

@@ -32,7 +32,7 @@ export async function findPlayers(data: string[]) {
   const players = await prisma.player.findMany({});
 
   let present: Player[] = [];
-  let missing: string[] = [];
+  let missing: { player: string; possibleFind?: string }[] = [];
 
   data.forEach((name) => {
     const foundPlayer = players.find((player) => {
@@ -43,14 +43,18 @@ export async function findPlayers(data: string[]) {
       present.push(foundPlayer);
     } else {
       const possibleFind = players.find((player) => {
-        let itemRank = rankItem(player.name, name);
+        let itemRank;
+
+        if (player.name.length > name.length) {
+          itemRank = rankItem(player.name.toLowerCase(), name.toLowerCase());
+        } else {
+          itemRank = rankItem(name.toLowerCase(), player.name.toLowerCase());
+        }
 
         return itemRank.passed;
       });
 
-      missing.push(
-        name + (possibleFind ? `posible -> ${possibleFind.name}` : "")
-      );
+      missing.push({ player: name, possibleFind: possibleFind?.name });
     }
   });
 
