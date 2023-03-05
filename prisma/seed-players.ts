@@ -1,9 +1,9 @@
 export const textPlayers = `Frank		5
-Piero gooo		6
-Lucho gooooo		6
-Bruce gooo		6
-Jheyson gooo		7
-Houston goooo		6
+Piero go		6
+Lucho go		6
+Bruce go		6
+Jheyson go		7
+Houston go		6
 Luis Daniel		6
 Juanecito		7
 Ronaldo el bicho		5
@@ -24,7 +24,7 @@ Jhoan		7
 Mikhail		8
 Luis R		6
 Luigi alva		6
-Erick Jr.		8
+Erick Jr		8
 Vladi		5
 Erick Valdivia		4
 Alpaquitay		7
