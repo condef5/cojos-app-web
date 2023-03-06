@@ -5,9 +5,10 @@ import _ from "lodash";
 
 export type { Player };
 
-export function playerAll() {
+export function playerAll(options = {}) {
   return prisma.player.findMany({
     orderBy: { updatedAt: "desc" },
+    ...options,
   });
 }
 

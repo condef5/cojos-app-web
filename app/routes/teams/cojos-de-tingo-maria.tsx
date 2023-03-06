@@ -1,13 +1,10 @@
 import { playerAll } from "~/models/player.server";
-import type { ActionArgs } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
 import { PlayerTable } from "~/components/PlayerTable";
 import { useLoaderData } from "@remix-run/react";
 
-export async function action({ request }: ActionArgs) {}
-
 export async function loader() {
-  const players = await playerAll();
+  const players = await playerAll({ orderBy: { level: "desc" } });
   return json({ players });
 }
 
