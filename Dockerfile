@@ -13,7 +13,7 @@ FROM base as deps
 WORKDIR /myapp
 
 ADD package.json yarn.lock .npmrc ./
-RUN npm install --production=false
+RUN yarn install --production=false
 
 # Setup production node_modules
 FROM base as production-deps
@@ -22,7 +22,7 @@ WORKDIR /myapp
 
 COPY --from=deps /myapp/node_modules /myapp/node_modules
 ADD package.json yarn.lock .npmrc ./
-RUN npm prune --production
+RUN yarn install --frozen-lockfile --production=true && yarn cache clean
 
 # Build the app
 FROM base as build
@@ -35,7 +35,7 @@ ADD prisma .
 RUN npx prisma generate
 
 ADD . .
-RUN npm run build
+RUN yarn run build
 
 # Finally, build the production image with minimal footprint
 FROM base
