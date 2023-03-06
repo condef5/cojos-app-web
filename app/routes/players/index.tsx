@@ -76,8 +76,12 @@ export default function PlayerIndexPage() {
 
   return (
     <div>
-      {/* @ts-ignore */}
-      <PlayerTable players={players} updatePlayer={updatePlayer} />
+      <PlayerTable
+        // @ts-ignore
+        players={players}
+        updatePlayer={updatePlayer}
+        className="p-2"
+      />
     </div>
   );
 }

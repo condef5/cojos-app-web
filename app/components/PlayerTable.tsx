@@ -95,9 +95,11 @@ function useSkipper() {
 export function PlayerTable({
   players,
   updatePlayer,
+  ...props
 }: {
   players: Player[];
   updatePlayer: (playerId: number, column: string, value: string) => void;
+  props: React.HTMLAttributes<HTMLDivElement>;
 }) {
   const [data, setData] = React.useState(() => [...players]);
   const [globalFilter, setGlobalFilter] = React.useState("");
@@ -137,7 +139,7 @@ export function PlayerTable({
   });
 
   return (
-    <div className="p-2">
+    <div {...props}>
       <input
         className="mb-4 w-full max-w-3xl rounded border border-gray-300  p-2"
         type="text"
