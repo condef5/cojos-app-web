@@ -27,7 +27,7 @@ Davis		5
 Alanya		4
 Yonil		6
 Erick Valdivia		4
-Alpaquitay		7
+Alpaquitay		8
 Erick Jr		8
 Vladi		5
 Luigi alva		6
@@ -43,7 +43,7 @@ Trejo		6
 Sandrito		2
 Juan Masgo		9
 Ario		7
-Kenyi		4
+Kenyi		7
 Gorpa		4
 Ivan		4
 Ronaldo A		5
@@ -56,6 +56,7 @@ Bruce go		6
 Lucho go		6
 Piero go		6
 Frank		5
+George		5
 Lucas		5`;
 
 export const players = textPlayers.split("\n").map((player) => {
