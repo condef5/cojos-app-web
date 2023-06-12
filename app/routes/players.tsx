@@ -39,16 +39,16 @@ export default function NotesPage() {
             type="submit"
             className="rounded bg-slate-600 py-2 px-4 text-blue-100 hover:bg-blue-500 active:bg-blue-600"
           >
-            Logout
+            Iniciar Sesión 
           </button>
         </Form>
       </header>
 
       <main className="block h-full flex-wrap bg-white md:flex md:flex-nowrap">
         <div className="flex h-auto w-full flex-col gap-2 border-r bg-gray-50 p-2 md:h-full md:w-80">
-          <NavLink to="/players/new">➕ New Player</NavLink>
-          <NavLink to="/players">📖 Players</NavLink>
-          <NavLink to="/players/random-team">🔀 Crear Team</NavLink>
+          <NavLink to="/players/new">➕ Nuevo Jugador</NavLink>
+          <NavLink to="/players">📖 Jugadores</NavLink>
+          <NavLink to="/players/random-team">🔀 Crear Equipos</NavLink>
         </div>
 
         <div className="flex-1 p-2 md:p-6">
