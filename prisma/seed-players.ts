@@ -1,63 +1,101 @@
-export const textPlayers = `Angel M		5
-Anghelo		6
-Luis simon		5
-Josue		4
-Cantaro		5
-Jara		6
-Amigo de jhoan		5
+export const textPlayers = `Jesse		4
+Cato		7
+Julio Gonzales		3
+Bill		3
+Joshi		4
+Lebuh		5
+Conde		4
+Alanya		3
+Gorpa		3
+Giussepe		4
+Einstein		4
+Johan		6
+Andy pena		6
+Ivan canta		3
+Caruz		6
+Erick Valdivia		3
+Martin		2
+Andy peña		5
+Deiby		5
+Vicente		3
+Mikhail		5
+Milo		2
+Reynaldo		4
+Leon angel		3
+Andrade		3
+Sandrito		3
+Paulo T.		3
+Gala		3
+Jhonatan		3
+Mori		3
+Pavel		3
+Alfredo f		4
+Ivan		4
+JP		5
+Terry		3
+Diego Vega		4
+Luigi Rocha		4
+Gregory		4
+Kenny		5
+Pastor go		5
+Pastor go		5
+johan v		5
+Henry		5
+Mail go		5
+Spectre		5
+Ambi suport		5
+Cristian		5
+Dante		5
+Max		5
+Fabricio		5
+Javier		5
+George		4
+Ronaldo el bicho		4
+Frank		4
+Ronaldo A		5
+Alexis		5
+Angel		5
+Davis		5
+Vladi		5
+Francis z		5
+Loloy		5
 Fisher		5
 Salas		5
-Mori		3
-Pavel		2
-Jheampol		7
-Amigo de Ronaldo A.		5
-Loloy		5
-Jhonatan		3
-Gregory		4
-Paulo T.		3
-Jhil		7
-Francis z		5
-Luigi Rocha		4
-Diego Vega		4
-Gala		3
-Zalasar		7
-Ricardo		7
-Martin		4
-Davis		5
-Alanya		4
-Yonil		6
-Erick Valdivia		4
-Alpaquitay		8
-Erick Jr		8
-Vladi		5
-Luigi alva		6
-Mikhail		8
-Luis R		6
-Jhoan		7
-Terry		4
-JP		5
-Alexis		5
-Cato		8
-Angel		5
-Trejo		6
-Sandrito		2
-Juan Masgo		9
-Ario		7
-Kenyi		7
-Gorpa		4
-Ivan		4
-Ronaldo A		5
-Ronaldo el bicho		5
-Juanecito		7
-Luis Daniel		6
-Houston go		6
-Jheyson go		7
+Cantaro		5
+Angel M		5
+Luis simon		5
+L Phant(Gaspar)		6
+Gaspar		6
+Efrain		6
+Beraun		5
+Piero go		6
+Anibal Diaz		6
 Bruce go		6
 Lucho go		6
-Piero go		6
-Frank		5
-George		5
-Lucas		5`;
+Luis Daniel		6
+Luis R		5
+Trejo		6
+Luigi alva		6
+Anghelo		6
+Jara		6
+Yonil		6
+Jheampol		7
+Maik		7
+Jheampol		7
+Mario		7
+Mario		7
+Jheyson go		7
+Juanecito		7
+Kenyi		7
+Jhoan		7
+Ario		7
+Ricardo		7
+Zalasar		7
+Jhil		7
+Jheampol		7
+Erick Jr		8
+Alpaquitay		7
+Juan Masgo		9`;
 
 export const players = textPlayers.split("\n").map((player) => {
   const [name, number] = player.split("\t\t");
