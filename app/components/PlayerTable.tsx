@@ -25,11 +25,11 @@ const columns = [
   columnHelper.accessor("name", {
     id: "name",
     cell: (info) => info.getValue(),
-    header: () => "Player",
+    header: () => "Nombre jugador",
   }),
   columnHelper.accessor("level", {
     id: "level",
-    header: () => "Level",
+    header: () => "Nivel",
   }),
 ];
 
@@ -149,7 +149,7 @@ export function PlayerTable({
       />
       <div className="max-w-3xl overflow-auto p-2">
         <div className="mb-1 text-right text-sm font-bold text-slate-500">
-          {table.getRowModel().rows.length} Rows
+          {table.getRowModel().rows.length} Filas
         </div>
         <table className="m-auto w-full  table-auto border-collapse text-sm">
           <thead>
@@ -224,20 +224,20 @@ export function PlayerTable({
           >
             {[10, 20, 30, 40, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
-                Show {pageSize}
+                Mostrar {pageSize}
               </option>
             ))}
           </select>
           <span className="md-hidden w-full"></span>
           <span className="flex items-center gap-1">
-            <div>Page</div>
+            <div>Página</div>
             <strong>
-              {table.getState().pagination.pageIndex + 1} of{" "}
+              {table.getState().pagination.pageIndex + 1} de{" "}
               {table.getPageCount()}
             </strong>
           </span>
           <span className="flex items-center gap-1">
-            | Go to page:
+            | Ir a la página:
             <input
               type="number"
               defaultValue={table.getState().pagination.pageIndex + 1}

@@ -58,7 +58,7 @@ export default function PlayerIndexPage() {
       >
         <div>
           <label className="flex w-full flex-col gap-1">
-            <span>Name: </span>
+            <span>Nombre: </span>
             <input
               name="name"
               className="flex-1 rounded-md border-2 border-blue-500 px-3 text-lg leading-loose"
@@ -77,7 +77,7 @@ export default function PlayerIndexPage() {
 
         <div>
           <label className="flex w-full flex-col gap-1">
-            <span>Level: </span>
+            <span>Nivel: </span>
             <input
               name="level"
               type="number"
@@ -102,7 +102,7 @@ export default function PlayerIndexPage() {
             type="submit"
             className="rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
           >
-            Save
+            Guardar
           </button>
         </div>
       </Form>
