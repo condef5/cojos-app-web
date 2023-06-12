@@ -39,13 +39,13 @@ export default function Index() {
                       to="/login"
                       className="flex items-center justify-center rounded-md bg-yellow-500 px-4 py-3 font-medium text-white hover:bg-yellow-600"
                     >
-                      Log In
+                      Acceder
                     </Link>
                           <Link
                       to="/teams/cojos-de-tingo-maria"
                       className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-yellow-700 shadow-sm hover:bg-yellow-50 sm:px-8"
                     >
-                      Players
+                      Lista de jugadores
                     </Link>
                   </div>
                 )}
