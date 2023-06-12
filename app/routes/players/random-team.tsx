@@ -103,6 +103,7 @@ export default function PlayerIndexPage() {
   const actionData = useActionData() as LoaderData;
   const [initList, setInitList] = React.useState("");
   const transition = useTransition();
+  const colors = ["#FFB84C", "#98D8AA", "#393646", "tomato"];
 
   React.useEffect(() => {
     const value = localStorage.getItem("list") || "";
@@ -191,7 +192,7 @@ export default function PlayerIndexPage() {
         <div className="flex gap-8 p-4">
           {actionData?.possibleTeams.map((team, index) => (
             <div key={index} className="flex flex-1 flex-col p-2">
-              <h3 className="my-2  font-bold text-gray-700">
+              <h3 className="my-2  font-bold text-gray-700" style={{ color: colors[index] }}>
                 Equipo {index + 1} -{" "}
                 <span className="font-normal">{teamWeight(team)}</span>
               </h3>
@@ -199,7 +200,7 @@ export default function PlayerIndexPage() {
                 {_.sortBy(team, ["level"])
                   .reverse()
                   .map((player: Player) => (
-                    <li className="w-1/2" key={player.id}>
+                    <li key={player.id}>
                       {player.name} -{" "}
                       <span className="text-sm">{player.level}</span>
                     </li>
