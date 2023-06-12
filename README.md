@@ -7,23 +7,42 @@
 1. You need these programs:
 
 - [NodeJs](https://nodejs.org/en/)
-- [yarn](https://yarnpkg.com/)
+- [Yarn](https://yarnpkg.com/)
+- [Sqlite](https://www.sqlite.org/index.html)
 
-2. Run migrations and seeds
+2. Add the `.env` file
 
 ```sh
-yarn setup
+cp .env.example .env
 ```
 
-3. Start dev server:
+3. Create database file
+
+```
+touch prisma/data.db
+```
+
+4. Run migrations
+
+```sh
+yarn prisma migrate dev
+```
+
+5. Run the seeds
+
+```sh
+yarn prisma db seed
+```
+
+6. Start dev server:
 
 ```sh
 yarn dev
 ```
 
-4. Go to http://localhost:3000/
+7. Go to http://localhost:3000/
 
-5. Use these credentials:
+8. Use these credentials:
 
 - Email: `frankcondezo@gmail.com`
 - Password: `letmein`
